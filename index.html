@@ -11,63 +11,18 @@ MUSIC: CC BY Code for FUKUI<br>
 
 <script type="module">
 import { shuffle } from "https://js.sabae.cc/shuffle.js";
+import { playBGMs } from "./bgm.js";
 
 const lastid = 24;
 
-const fix2 = n => n < 10 ? "0" + n : n;
-
 const bgms = [];
+const fix2 = n => n < 10 ? "0" + n : n;
 for (let i = 1; i <= lastid; i++) {
   bgms.push("./music/cafe" + fix2(i) + ".mp3");
 }
 shuffle(bgms);
 
-const caches = {};
-let currentaudio = null;
-const getAudio = (fn) => {
-  const cache = caches[fn];
-  if (cache) return cache;
-  const audio = new Audio();
-  audio.src = fn;
-  return audio;
-};
-const waitForAudioEnd = async (audioElement) => {
-  return new Promise((resolve, reject) => {
-    if (audioElement.ended) {
-      resolve();
-      return;
-    }
-    audioElement.addEventListener("ended", resolve, { once: true });
-    audioElement.addEventListener("error", reject, { once: true });
-  });
-};
-const playBGM = async (audio) => {
-  audio.currentTime = 0;
-  audio.play();
-  currentaudio = audio;
-  await waitForAudioEnd(audio);
-};
-const stopBGM = () => {
-  currentaudio.pause();
-  currentaudio = null;
-};
-
-let idx = 0;
-const playBGMs = async (bgms) => {
-  if (currentaudio) {
-    stopBGM();
-    return;
-  }
-  for (;;) {
-    const bgm = bgms[idx++ % bgms.length];
-    const audio = getAudio(bgm);
-    await playBGM(audio);
-    if (!currentaudio) break;
-  }
-};
-
 btnbgm.onclick = () => playBGMs(bgms);
-
 </script>
 
 <style>
