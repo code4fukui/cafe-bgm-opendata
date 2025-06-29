@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>cafe bgm opendata</title>
+</head><body>
+<h1>cafe bgm opendata</h1>
+
+<button id=btnbgm>BGM by AI / SUNO</button>
+
+<script type="module">
+import { shuffle } from "https://js.sabae.cc/shuffle.js";
+
+const fix2 = n => n < 10 ? "0" + n : n;
+
+const bgms = [];
+for (let i = 1; i <= 12; i++) {
+  bgms.push("./cafe" + fix2(i) + ".mp3");
+}
+shuffle(bgms);
+
+const caches = {};
+let currentaudio = null;
+const getAudio = (fn) => {
+  const cache = caches[fn];
+  if (cache) return cache;
+  const audio = new Audio();
+  audio.src = fn;
+  return audio;
+};
+const waitForAudioEnd = async (audioElement) => {
+  return new Promise((resolve, reject) => {
+    if (audioElement.ended) {
+      resolve();
+      return;
+    }
+    audioElement.addEventListener('ended', resolve, { once: true });
+    audioElement.addEventListener('error', reject, { once: true });
+  });
+};
+const playBGM = async (audio) => {
+  audio.currentTime = 0;
+  audio.play();
+  currentaudio = audio;
+  await waitForAudioEnd(audio);
+};
+const stopBGM = () => {
+  currentaudio.pause();
+  currentaudio = null;
+};
+
+let idx = 0;
+const playBGMs = async (bgms) => {
+  if (currentaudio) {
+    stopBGM();
+    return;
+  }
+  for (;;) {
+    const bgm = bgms[idx++ % bgms.length];
+    const audio = getAudio(bgm);
+    await playBGM(audio);
+    if (!currentaudio) break;
+  }
+};
+
+btnbgm.onclick = () => playBGMs(bgms);
+
+</script>
+
+</body></html>
