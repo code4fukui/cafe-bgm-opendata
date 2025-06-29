@@ -1,6 +1,7 @@
 # cafe-bgm-opendata
 
-[Cafe BGM](https://code4fukui.github.io/cafe-bgm-opendata/)
+- App: [Cafe BGM Opendata](https://code4fukui.github.io/cafe-bgm-opendata/)
+- Music: [music](music) (mp3)
 
 ## BGM
 
