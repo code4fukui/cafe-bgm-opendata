@@ -11,7 +11,7 @@ import { shuffle } from "https://js.sabae.cc/shuffle.js";
 const fix2 = n => n < 10 ? "0" + n : n;
 
 const bgms = [];
-for (let i = 1; i <= 12; i++) {
+for (let i = 1; i <= 13; i++) {
   bgms.push("./cafe" + fix2(i) + ".mp3");
 }
 shuffle(bgms);
@@ -31,8 +31,8 @@ const waitForAudioEnd = async (audioElement) => {
       resolve();
       return;
     }
-    audioElement.addEventListener('ended', resolve, { once: true });
-    audioElement.addEventListener('error', reject, { once: true });
+    audioElement.addEventListener("ended", resolve, { once: true });
+    audioElement.addEventListener("error", reject, { once: true });
   });
 };
 const playBGM = async (audio) => {
