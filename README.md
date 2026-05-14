@@ -1,10 +1,15 @@
 # Cafe BGM Opendata
 
-- App: [Cafe BGM Opendata](https://code4fukui.github.io/cafe-bgm-opendata/)
-- Music: [music](music) (mp3)
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
 
-## BGM
+[
+![Demo](https://img.shields.io/badge/Demo-Play%20Music-brightgreen.svg)
+](https://code4fukui.github.io/cafe-bgm-opendata/)
+[
+![Music License: CC BY 4.0](https://img.shields.io/badge/Music%20License-CC%20BY%204.0-lightgrey.svg)
+](https://creativecommons.org/licenses/by/4.0/)
+[
+![License: MIT](https://img.shields.io/badge/Source%20Code-MIT-yellow.svg)
+](https://opensource.org/licenses/MIT)
 
-- Cafe MUSIC [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) Code for FUKUI
-- created by Inst Demo / [suno-api-js](https://github.com/code4fukui/suno-api-js/)
-- powered by [SUNO API](https://sunoapi.org/)
+A collection of 24 royalty-free background music tracks
